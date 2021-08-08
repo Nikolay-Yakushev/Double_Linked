@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.5)
+project(modio)
+set (CMAKE_CXX_STANDARD 17)
+
+message("Testing enabled")
+file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp)
+add_subdirectory(ext/googletest)
+enable_testing()
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+add_executable(runUnitTests ${TEST_SRC_FILES} test/testCases.cpp)
+target_link_libraries(runUnitTests gtest gtest_main)
+add_test(UnitTests runUnitTests)
